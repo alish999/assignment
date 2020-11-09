@@ -1,49 +1,49 @@
-let personName = ['Alish', 'Maharjan'];
+// let personName = ['Alish', 'Maharjan'];
 
-function promiseReadArray(personName){
-    return new Promise((resolve, reject)=>{
-        if (personName.length > 0){
-            resolve('The person name is correct')
-        }
-        else{
-            reject('please enter your personal information')
-        }
-    })
-}
+// function promiseReadArray(personName){
+//     return new Promise((resolve, reject)=>{
+//         if (personName.length > 0){
+//             resolve('The person name is correct')
+//         }
+//         else{
+//             reject('please enter your personal information')
+//         }
+//     })
+// }
 
-promiseReadArray(personName).then(result => {
-    console.log(`The user names are: `);
-    let time = 1000;
-    result.forEach((r,i)=>{
-        setTimeout(()=>{
-            console.log(`${i+1}) ${r}`);  
-        }, time);
-        time += 3000;
-    })
-}).catch(error=>{
-    console.log(error);
-})
+// promiseReadArray(personName).then(result => {
+//     console.log(`The user names are: `);
+//     let time = 1000;
+//     result.forEach((r,i)=>{
+//         setTimeout(()=>{
+//             console.log(`${i+1}) ${r}`);  
+//         }, time);
+//         time += 3000;
+//     })
+// }).catch(error=>{
+//     console.log(error);
+// })
 
-// using async and await
-let async_await_read_array = async (personName) => {
-    try {
-        let readArray = await promiseReadArray(personName);
-        console.log(`through async and await`)  
-        let time = 1000;
-        readArray.forEach((r,i)=>{
-            setTimeout(()=>{
-                console.log(`${i+1}-${r}`)
-            }, time);
-            time += 3000;
-        })
-    } catch (error) {
-        console.log("Error is: ");
-        console.log(error);
-    }
+// // using async and await
+// let async_await_read_array = async (personName) => {
+//     try {
+//         let readArray = await promiseReadArray(personName);
+//         console.log(`through async and await`)  
+//         let time = 1000;
+//         readArray.forEach((r,i)=>{
+//             setTimeout(()=>{
+//                 console.log(`${i+1}-${r}`)
+//             }, time);
+//             time += 3000;
+//         })
+//     } catch (error) {
+//         console.log("Error is: ");
+//         console.log(error);
+//     }
     
-}
+// }
 
-async_await_read_array(personName);
+// async_await_read_array(personName);
 
 
 
@@ -108,7 +108,7 @@ jsonFile('./test_file/user.json', 'utf8')
 // using async and await to handle promise.
 let readFileAsync =  async (file,encoding) => {
     try {
-        let readJsonFileResult = await readJsonFile(file, encoding);
+        let readJsonFileResult = await jsonFile(file, encoding);
         let data = JSON.parse(readJsonFileResult);
         let time = 1000;
         console.log('Using async and await');
@@ -128,7 +128,7 @@ readFileAsync('./test_file/user.json', 'utf8');
 
 //Read multiple file using Promise.all()
 
-Promise.all([jsonFile('./test_file/user.json', 'utf8'), jsonFile('./test_file/file2.txt', 'utf8')])
+Promise.all([jsonFile('./test_file/users.json', 'utf8'), jsonFile('./test_file/fileee.txt', 'utf8')])
     .then(result=>{
         let data = JSON.parse(result[0]);
         console.log(data)
